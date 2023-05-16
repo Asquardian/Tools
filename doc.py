@@ -3,7 +3,7 @@ import numpy
 from docx import Document
 
 
-filename = 'ovz.docx'
+filename = '123.docx'
 document = Document(filename)# Name of file
 df_tables = []
 for table in document.tables:
@@ -18,16 +18,5 @@ wb = pd.DataFrame(df)
 html = wb.to_html()
 f = open('xyz.html','w', encoding='utf-8')
 print('to html')
-i = 0
-while '<tr>' in html:
-    html = html.replace('<th>' + str(i) + '</th>', u'')
-    i = i + 1
-    html = html.replace('<tr>', u'<tr itemprop="purposeLibr">', 1) #item props
-    html = html.replace('<td>', u'<td itemprop="objName">', 1)
-    html = html.replace('<td>', u'<td itemprop="objAddress">', 1)
-    html = html.replace('<td>', u'<td itemprop="objSq">', 1)
-    html = html.replace('<td>', u'<td itemprop="objCnt">', 1)
-    html = html.replace('<td>', u'<td itemprop="objOvz">', 1)
-    print(i)
 
 f.write(html)
